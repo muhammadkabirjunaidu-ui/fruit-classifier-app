@@ -1,6 +1,7 @@
 from pathlib import Path
 from fastai.vision.all import *
 import aiohttp
+import os
 from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
@@ -69,4 +70,5 @@ async def predict(request):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    port = int(os.environ.get("PORT", 8080))
+    uvicorn.run(app, host="0.0.0.0", port=port)
