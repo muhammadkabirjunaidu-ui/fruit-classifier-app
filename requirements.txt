@@ -1,7 +1,6 @@
-torch>=2.0.0
-torchvision>=0.15.0
-fastai>=2.7.13
+fastai==2.8.12
 uvicorn
 starlette
 python-multipart
-aiohttp
+gdown>=5.2,<6
+requests
