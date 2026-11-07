@@ -11,12 +11,21 @@ from starlette.routing import Route, WebSocketRoute, Mount
 # 1. Path setup
 app_path = Path(__file__).parent
 model_file_name = 'export.pkl'
-model_file_url = 'https://drive.google.com/uc?id=1bZQIlGTzTD-U8YESD1weqRnNQCH3cVvW'  # Replace with your direct download link
+model_file_url = 'https://drive.google.com/uc?export=download&id=1bZQIlGTzTD-U8YESD1weqRnNQCH3cVvW'  # Replace with your direct download link
 
 # 2. Define lifespan context manager for startup tasks (replaces @app.on_event)
 @asynccontextmanager
 async def lifespan(app: Starlette):
     local_model_path = app_path.parent / model_file_name
+    
+    # Remove corrupted download attempts if they exist
+    if local_model_path.exists():
+        with open(local_model_path, 'rb') as f:
+            header = f.read(5)
+            if header.startswith(b'<') or header.startswith(b'<!DOC'):
+                print("Detected invalid HTML file instead of model binary. Removing corrupted file...")
+                local_model_path.unlink()
+
     if not local_model_path.exists():
         print("Downloading model from cloud storage...")
         async with aiohttp.ClientSession() as session:
