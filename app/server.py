@@ -5,7 +5,7 @@ import os
 from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
-from starlette.routing import route, WebSocketRoute, Mount, Route
+from starlette.routing import Route, WebSocketRoute, Mount
 
 # 1. Path setup
 app_path = Path(__file__).parent
