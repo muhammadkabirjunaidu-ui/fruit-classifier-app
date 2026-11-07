@@ -1,4 +1,6 @@
-fastai==2.7.13
+torch>=2.0.0
+torchvision>=0.15.0
+fastai>=2.7.13
 uvicorn
 starlette
 python-multipart
