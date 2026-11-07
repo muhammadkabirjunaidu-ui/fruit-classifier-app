@@ -11,7 +11,7 @@ from starlette.routing import Route, WebSocketRoute, Mount
 # 1. Path setup
 app_path = Path(__file__).parent
 model_file_name = 'export.pkl'
-model_file_url = 'YOUR_DIRECT_DOWNLOAD_LINK_TO_EXPORT_PKL'  # Replace with your direct download link
+model_file_url = 'https://drive.google.com/uc?id=1bZQIlGTzTD-U8YESD1weqRnNQCH3cVvW'  # Replace with your direct download link
 
 # 2. Define lifespan context manager for startup tasks (replaces @app.on_event)
 @asynccontextmanager
